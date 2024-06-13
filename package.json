@@ -1,0 +1,20 @@
+{
+  "name": "homework-3-parsing-nodecron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "puppeteer": "^22.11.0"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.4.5"
+  }
+}
