@@ -2,6 +2,10 @@
 import { fetchData, Publication } from './parser';
 
 const previousPublications: Publication[] = [];
+let analysisData = {
+  totalPublications: 0,
+  avgPrice: 0,
+};
 
 export const analyzeData = async () => {
   const newPublications = await fetchData();
@@ -9,12 +13,17 @@ export const analyzeData = async () => {
 
   previousPublications.push(...addedPublications);
 
-  const totalPublications = addedPublications.length;
+  const totalPublications = previousPublications.length;
   const totalPrices = previousPublications.reduce((acc, curr) => acc + curr.price, 0);
-  const avgPrice = previousPublications.length > 0 ? totalPrices / previousPublications.length : 0;
+  const avgPrice = totalPublications > 0 ? totalPrices / totalPublications : 0;
 
-  console.log(`Total new publications in the last fetch: ${totalPublications}`);
+  analysisData = {
+    totalPublications,
+    avgPrice,
+  };
+
+  console.log(`Total new publications in the last fetch: ${addedPublications.length}`);
   console.log(`Average price of all publications: ${avgPrice.toFixed(2)} тг.`);
-
-  previousPublications.splice(0, previousPublications.length - totalPublications);
 };
+
+export const getAnalysisData = () => analysisData;
